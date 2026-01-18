@@ -1,0 +1,94 @@
+@model ProductsListViewModel
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-header text-white fw-bold">
+              <vc:categories-list/>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+
+        @if (Model.Products.Count() == 0)
+        {
+        <div class="alert alert-warning text-center shadow-sm" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            Aradığınız kriterlere uygun ürün bulunamadı.
+        </div>
+        }
+        else
+        {
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            @foreach (var p in Model.Products)
+            {
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0 hover-effect">
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center overflow-hidden"
+                    style="height: 200px;">
+                
+                    @if (!String.IsNullOrEmpty(p.image))
+                    {
+                    @* Resim varsa burası çalışır *@
+                    <img src="@p.image" class="w-100 h-100" style="object-fit: contain;" alt="@p.Name" />
+                    }
+                    else
+                    {
+                    @* Resim yoksa ikon gösterir *@
+                    <i class="bi bi-image fs-1 text-secondary"></i>
+                    }
+                </div>
+            
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title text-primary fw-bold text-truncate">@p.Name</h5>
+            
+                        <p class="card-text text-muted small flex-grow-1">
+                            @(p.Description.Length > 50 ? p.Description.Substring(0, 50) + "..." : p.Description)
+                        </p>
+            
+                        <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                            <span
+                                class="badge bg-success bg-opacity-10 text-success fs-6 px-3 py-2 rounded-pill border border-success border-opacity-25">
+                                @p.Price.ToString("c")
+                            </span>
+            
+                            <form asp-page="/Cart" method="post">
+                                <input type="hidden" asp-for="@p.Id" name="Id">
+            
+                                <button type="submit" class="btn btn-outline-success btn-sm rounded-pill px-3" title="Sepete Ekle">
+                                    <i class="bi bi-cart-plus me-1"></i> Sepete Ekle
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+           
+        </div>
+        @if(Model.PageInfo.Totalpages>1)
+        {
+            <div class="mt-5 d-flex justify-content-center">
+                <div page-model="@Model.PageInfo" page-action="Index" page-class="btn" page-class-link="btn-outline-secondary"
+                    page-class-active="btn-dark" class="btn-group m-1">
+            
+                </div>
+            </div>
+        }
+        
+        }
+
+    </div>
+</div>
+
+<style>
+    .hover-effect {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .hover-effect:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+    }
+</style>

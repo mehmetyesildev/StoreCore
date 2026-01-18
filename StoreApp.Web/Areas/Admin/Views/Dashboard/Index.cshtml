@@ -1,0 +1,45 @@
+<div class="row mt-4">
+
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3 shadow-sm" style="max-width: 18rem;">
+            <div class="card-header">Ürünler</div>
+            <div class="card-body">
+                <h5 class="card-title display-4">@ViewBag.ProductCount</h5>
+                <p class="card-text">Adet ürün listeleniyor.</p>
+                <a asp-controller="Product" asp-action="Index" class="btn btn-light btn-sm mt-2">İncele</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3 shadow-sm" style="max-width: 18rem;">
+            <div class="card-header">Kategoriler</div>
+            <div class="card-body">
+                <h5 class="card-title display-4">@ViewBag.CategoryCount</h5>
+                <p class="card-text">Farklı kategori mevcut.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-white bg-warning mb-3 shadow-sm" style="max-width: 18rem;">
+            <div class="card-header text-dark">Depo Değeri</div>
+            <div class="card-body text-dark">
+                <h5 class="card-title display-6">@(((decimal)ViewBag.TotalInventoryValue).ToString("c"))</h5>
+                <p class="card-text">Toplam ürün bedeli.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row mt-3">
+    <div class="col-12">
+        <div class="card shadow-sm">
+            <div class="card-body text-center p-5">
+                <h3 class="text-muted">Hoşgeldiniz, Admin!</h3>
+                <p>Buradan mağaza yönetimini gerçekleştirebilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+</div>
