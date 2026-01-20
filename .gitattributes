@@ -1,0 +1,19 @@
+
+*.js linguist-detectable=false
+*.min.js linguist-detectable=false
+wwwroot/js/** linguist-detectable=false
+
+
+*.css linguist-detectable=false
+*.scss linguist-detectable=false
+*.less linguist-detectable=false
+wwwroot/css/** linguist-detectable=false
+
+
+wwwroot/lib/** linguist-detectable=false
+wwwroot/vendor/** linguist-detectable=false
+
+
+*.json linguist-detectable=false
+*.svg linguist-detectable=false
+*.xml linguist-detectable=false
